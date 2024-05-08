@@ -45,6 +45,10 @@ namespace taş_kağıt_makas
                 {
                     MessageBox.Show("Tebrikler Oyunu Kazandınız");
                 }
+                else if (adet == adet2){
+                    MessageBox.Show("Oyun Berabere Bitti");
+
+                }
                 else { MessageBox.Show("Oyunu Kaybettiniz"); }
             }
         }
