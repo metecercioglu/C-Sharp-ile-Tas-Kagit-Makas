@@ -1,0 +1,384 @@
+using System.Net.NetworkInformation;
+using System.Runtime.CompilerServices;
+
+namespace taş_kağıt_makas
+{
+    public partial class Form1 : Form
+    {
+
+        int adet = 0;
+        int adet2 = 0;
+
+        public Form1()
+        {
+            InitializeComponent();
+
+        }
+        int sayac = 0;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            textBox1.Text = sayac.ToString();
+            sayac++;
+            if (sayac == 11)
+            {
+                timer1.Stop();
+                MessageBox.Show("Süre dolmuştur oyun bitti");
+                skortablosu2.Text = "1.oyuncu skoru : " + adet.ToString() + "      " + "2.oyuncu skoru : " + adet2.ToString();
+
+                pbxKagit.BackColor = Color.White;
+                pbxMakas.BackColor = Color.White;
+                pbxTas.BackColor = Color.White;
+
+                pbxKagit2.BackColor = Color.White;
+                pbxMakas2.BackColor = Color.White;
+                pbxTas2.BackColor = Color.White;
+
+                double toplam = Tassayisi + Makassayisi + Kagitsayisi;
+                double Tasoran = (100 * Tassayisi) / toplam;
+                Tasoran2 = Math.Round(Tasoran, 2);
+                double Makasoran = (100 * Makassayisi) / toplam;
+                Makasoran2 = Math.Round(Makasoran, 2);
+                double Kagitoran = (100 * Kagitsayisi) / toplam;
+                Kagitoran2 = Math.Round(Kagitoran, 2);
+                Oran.Text = "Tas oranı " + Tasoran2 + "%" + "  " + "Makas oranı " + Makasoran2 + "%" + "  " + "Kağıt oranı " + Kagitoran2 + "%";
+                if (adet > adet2)
+                {
+                    MessageBox.Show("Tebrikler Oyunu Kazandınız");
+                }
+                else { MessageBox.Show("Oyunu Kaybettiniz"); }
+            }
+        }
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+            Baslangicresim.Visible = true;
+            BaslangicResim2.Visible = true;
+            this.KeyPreview = true;
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        int hamle = 0;
+        int tiklamasayisi = 0;
+        int Tassayisi = 0;
+        int Makassayisi = 0;
+        int Kagitsayisi = 0;
+        double Kagitoran2 = 0;
+        double Makasoran2 = 0;
+        double Tasoran2 = 0;
+
+        private void tas1_Click(object sender, EventArgs e)
+        {
+
+            pbxKagit.BackColor = Color.White;
+            pbxMakas.BackColor = Color.White;
+            pbxTas.BackColor = Color.White;
+
+            pbxKagit2.BackColor = Color.White;
+            pbxMakas2.BackColor = Color.White;
+            pbxTas2.BackColor = Color.White;
+
+            hamle = 1;
+            Random rnd = new Random();
+            int a = 0;
+            a = rnd.Next(1, 4);
+
+
+            pbxTas.Visible = true;
+            pbxMakas.Visible = false;
+            pbxKagit.Visible = false;
+
+            if (hamle == a)
+            {
+                pbxTas2.BackColor = Color.Yellow;
+                pbxTas.BackColor = Color.Yellow;
+                skortablosu.Text = "Berabere";
+                tiklamasayisi++;
+                Tassayisi++;
+            }
+            else if (a == 2)
+            {
+                pbxKagit2.BackColor = Color.Green;
+                pbxTas.BackColor = Color.Red;
+                skortablosu.Text = "2. oyuncu kazandı";
+                adet2++;
+                tiklamasayisi++;
+                Kagitsayisi++;
+            }
+            else if (a == 3)
+            {
+                pbxMakas2.BackColor = Color.Red;
+                pbxTas.BackColor = Color.Green;
+                skortablosu.Text = "1. oyuncu kazandı";
+                adet++;
+                tiklamasayisi++;
+                Makassayisi++;
+            }
+            if (a == 1)
+            {
+                pbxTas2.Visible = true;
+                pbxMakas2.Visible = false;
+                pbxKagit2.Visible = false;
+                TasKagıtMakasSecim.Text = "TAS";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            else if (a == 2)
+            {
+                pbxTas2.Visible = false;
+                pbxMakas2.Visible = false;
+                pbxKagit2.Visible = true;
+                TasKagıtMakasSecim.Text = "KAGIT";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            else if (a == 3)
+            {
+                pbxTas2.Visible = false;
+                pbxMakas2.Visible = true;
+                pbxKagit2.Visible = false;
+                TasKagıtMakasSecim.Text = "MAKAS";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            skortablosu2.Text = "1.oyuncu skoru : " + adet.ToString() + "      " + "2.oyuncu skoru : " + adet2.ToString();
+            TiklamaSayisi.Text = tiklamasayisi + " Hamle Yapılmıştır";
+
+        }
+        private void kagıt1_Click(object sender, EventArgs e)
+        {
+            pbxKagit.BackColor = Color.White;
+            pbxMakas.BackColor = Color.White;
+            pbxTas.BackColor = Color.White;
+
+            pbxKagit2.BackColor = Color.White;
+            pbxMakas2.BackColor = Color.White;
+            pbxTas2.BackColor = Color.White;
+
+            hamle = 2;
+            Random rnd = new Random();
+            int a = 0;
+            a = rnd.Next(1, 4);
+
+            pbxTas.Visible = false;
+            pbxMakas.Visible = false;
+            pbxKagit.Visible = true;
+
+            if (hamle == a)
+            {
+                pbxKagit2.BackColor = Color.Yellow;
+                pbxKagit.BackColor = Color.Yellow;
+                skortablosu.Text = "Berabere";
+                tiklamasayisi++;
+                Kagitsayisi++;
+            }
+            else if (a == 1)
+            {
+                pbxTas2.BackColor = Color.Red;
+                pbxKagit.BackColor = Color.Green;
+                skortablosu.Text = "1. oyuncu kazandı";
+                adet++;
+                tiklamasayisi++;
+                Tassayisi++;
+            }
+            else if (a == 3)
+            {
+                pbxMakas2.BackColor = Color.Green;
+                pbxKagit.BackColor = Color.Red;
+                skortablosu.Text = "2. oyuncu kazandı";
+                adet2++;
+                tiklamasayisi++;
+                Makassayisi++;
+            }
+            if (a == 1)
+            {
+                pbxTas2.Visible = true;
+                pbxMakas2.Visible = false;
+                pbxKagit2.Visible = false;
+                TasKagıtMakasSecim.Text = "TAS";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            else if (a == 2)
+            {
+                pbxTas2.Visible = false;
+                pbxMakas2.Visible = false;
+                pbxKagit2.Visible = true;
+                TasKagıtMakasSecim.Text = "KAGIT";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            else if (a == 3)
+            {
+                pbxTas2.Visible = false;
+                pbxMakas2.Visible = true;
+                pbxKagit2.Visible = false;
+                TasKagıtMakasSecim.Text = "MAKAS";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            skortablosu2.Text = "1.oyuncu skoru : " + adet.ToString() + "      " + "2.oyuncu skoru : " + adet2.ToString();
+            TiklamaSayisi.Text = tiklamasayisi + " Hamle Yapılmıştır";
+        }
+        private void makas1_Click(object sender, EventArgs e)
+        {
+            pbxKagit.BackColor = Color.White;
+            pbxMakas.BackColor = Color.White;
+            pbxTas.BackColor = Color.White;
+
+            pbxKagit2.BackColor = Color.White;
+            pbxMakas2.BackColor = Color.White;
+            pbxTas2.BackColor = Color.White;
+
+            hamle = 3;
+            Random rnd = new Random();
+            int a = 0;
+            a = rnd.Next(1, 4);
+
+
+            pbxTas.Visible = false;
+            pbxMakas.Visible = true;
+            pbxKagit.Visible = false;
+
+            if (hamle == a)
+            {
+                pbxMakas2.BackColor = Color.Yellow;
+                pbxMakas.BackColor = Color.Yellow;
+                skortablosu.Text = "Berabere";
+                tiklamasayisi++;
+                Makassayisi++;
+            }
+            else if (a == 1)
+            {
+                pbxTas2.BackColor = Color.Green;
+                pbxMakas.BackColor = Color.Red;
+                skortablosu.Text = "2. oyuncu kazandı";
+                adet2++;
+                tiklamasayisi++;
+                Tassayisi++;
+            }
+            else if (a == 2)
+            {
+                pbxKagit2.BackColor = Color.Red;
+                pbxMakas.BackColor = Color.Green;
+                skortablosu.Text = "1. oyuncu kazandı";
+                adet++;
+                tiklamasayisi++;
+                Kagitsayisi++;
+            }
+            if (a == 1)
+            {
+                pbxTas2.Visible = true;
+                pbxMakas2.Visible = false;
+                pbxKagit2.Visible = false;
+                TasKagıtMakasSecim.Text = "TAS";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            else if (a == 2)
+            {
+                pbxTas2.Visible = false;
+                pbxMakas2.Visible = false;
+                pbxKagit2.Visible = true;
+                TasKagıtMakasSecim.Text = "KAGIT";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            else if (a == 3)
+            {
+                pbxTas2.Visible = false;
+                pbxMakas2.Visible = true;
+                pbxKagit2.Visible = false;
+                TasKagıtMakasSecim.Text = "MAKAS";
+                BaslangicResim2.Visible = false;
+                Baslangicresim.Visible = false;
+            }
+            skortablosu2.Text = "1.oyuncu skoru : " + adet.ToString() + "      " + "2.oyuncu skoru : " + adet2.ToString();
+            TiklamaSayisi.Text = tiklamasayisi + " Hamle Yapılmıştır";
+        }
+
+        #region
+        public void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void pbxTas_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void pbxMakas_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void skortablosu2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void TiklamaSayisi_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void TasKagıtMakasSecim_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 'A' || e.KeyChar == 'a')
+            {
+                tas1.PerformClick();
+
+            }
+            if (e.KeyChar == 'S' || e.KeyChar == 's')
+            {
+                kagıt1.PerformClick();
+
+            }
+            if (e.KeyChar == 'D' || e.KeyChar == 'd')
+            {
+                makas1.PerformClick();
+
+            }
+            if (e.KeyChar == 'R' || e.KeyChar == 'r')
+            {
+                tekrarBasla.PerformClick();
+            }
+
+        }
+        private void tekrarBasla_Click(object sender, EventArgs e)
+        {
+            TasKagıtMakasSecim.Text = string.Empty;
+            TiklamaSayisi.Text = string.Empty;
+            skortablosu.Text = string.Empty;
+            skortablosu2.Text = string.Empty;
+            Oran.Text = string.Empty;
+            sayac = 0;
+            timer1.Start();
+            Baslangicresim.Visible = true;
+            BaslangicResim2.Visible = true;
+            this.KeyPreview = true;
+            hamle = 0;
+            tiklamasayisi = 0;
+            Tassayisi = 0;
+            Makassayisi = 0;
+            Kagitsayisi = 0;
+            Kagitoran2 = 0;
+            Makasoran2 = 0;
+            Tasoran2 = 0;
+            adet = 0;
+            adet2 = 0;
+        }
+
+    }
+}
